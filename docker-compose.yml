@@ -6,7 +6,6 @@ services:
     hostname: mail.example.com
     ports:
       - "25:25"
-      - "465:465"
       - "587:587"
       - "993:993"
     volumes:
@@ -17,8 +16,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/letsencrypt:/etc/letsencrypt
     environment:
+      - ENABLE_OPENDMARC=0
       - ENABLE_RSPAMD=1
-      - ENABLE_CLAMAV=1
+      - ENABLE_CLAMAV=0
       - ENABLE_FAIL2BAN=1
       - LOG_LEVEL=debug
       - SSL_TYPE=letsencrypt
